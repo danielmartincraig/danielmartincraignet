@@ -13,7 +13,7 @@
      [:p bio]]))
 
 (defn step-panel [step]
-  [:p "Step"])
+  [:p (str step)])
 
 (defn widget-panel []
   (let [steps @(re-frame/subscribe [::subs/steps])]
