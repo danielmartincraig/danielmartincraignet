@@ -12,13 +12,30 @@
      [:h1 name]
      [:p bio]]))
 
-(defn step-panel [step]
-  [:p (str step)])
+(defn walk-forward-step-panel [step]
+  (let [{:keys [step-id operation quantity] :as step} step]
+    [:p (str step-id ". " operation " " quantity " steps")]))
+
+(defn walk-backward-step-panel [step]
+  (let [{:keys [step-id operation quantity] :as step} step]
+    [:p (str step-id ". " operation " " quantity " steps")]))
+
+(defn turn-right-step-panel [step]
+  (let [{:keys [step-id operation quantity] :as step} step]
+    [:p (str step-id ". " operation " " quantity " steps")]))
+
+(defn turn-left-step-panel [step]
+  (let [{:keys [step-id operation quantity] :as step} step]
+    [:p (str step-id ". " operation " " quantity " steps")]))
 
 (defn widget-panel []
   (let [steps @(re-frame/subscribe [::subs/steps])]
     [:section
-     (into [:section] (map step-panel steps))
+     (into [:section] (map (fn [step]
+                             (let [{:keys [_ operation _] :as step} step]
+                               (cond (= operation 'walk-forward) [walk-forward-step-panel step]
+                                     :default                    [walk-backward-step-panel step]))
+                             ) steps))
      [:button {:onClick #(re-frame/dispatch [::events/add-step steps])} "Add Step"]]))
 
 (let [steps @(re-frame/subscribe [::subs/steps])] steps)
