@@ -1,9 +1,6 @@
 # danielmartincraignet
 
-A [re-frame](https://github.com/day8/re-frame) application designed to ... well, that part is up to
-you.
-
-## Getting Started
+This is the source of my website
 
 ### Project Overview
 
@@ -216,3 +213,4 @@ Always inspect the `resources/public/js/compiled` directory prior to deploying t
 `lein` alias in this project after `lein watch` will, at the very least, run `lein clean`, which
 deletes this generated directory. Further, running `lein watch` will generate many, much larger
 development versions of the files in this directory.
+
